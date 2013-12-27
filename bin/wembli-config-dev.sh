@@ -6,6 +6,7 @@ rpm -ivh epel-release-6-8.noarch.rpm
 sudo yum install -y epel jq nodejs npm nginx mongodb
 sudo rm -rf /etc/nginx
 sudo ln -s /wembli/nginx/vagrant /etc/nginx
+mkdir -p /var/lib/nginx/proxy
 sudo chmod -R 777 /var/lib/nginx/proxy
 service nginx restart
 #get the ip addresses for the docker containers so the app can use them
@@ -26,7 +27,7 @@ node /wembli/website/bin/directory/build-tree.js -h $REDIS_HOST /wembli/website/
 node /wembli/express-meta-tags/bin/bulk-load.js -h $REDIS_HOST /wembli/website/data/Wembli\ Meta\ Tags.csv
 #ticket network api proxy
 sudo echo "184.106.146.14 tn.wembli.com" >> /etc/hosts
-echo "export PATH=/wembli/geoip/bin:/wembli/node/bin:/wembli/website/node_modules/less/bin:$PATH:$HOME/bin" >> ~/.bashrc
-echo "export NODE_ENV=development" >> ~/.bashrc
-echo "export NODE_PATH=/wembli/node/lib/node_modules:/wembli/node/lib:/wembli/website/lib:/wembli/website/models" >> ~/.bashrc
+sudo echo "export PATH=/wembli/geoip/bin:/wembli/node/bin:/wembli/website/node_modules/less/bin:$PATH:$HOME/bin" >> /home/vagrant/.bashrc
+sudo echo "export NODE_ENV=development" >> /home/vagrant/.bashrc
+sudo echo "export NODE_PATH=/wembli/node/lib/node_modules:/wembli/node/lib:/wembli/website/lib:/wembli/website/models" >> /home/vagrant/.bashrc
 
