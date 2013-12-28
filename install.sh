@@ -6,6 +6,5 @@ git clone https://github.com/bluesman/wembli-website.git website
 cd website
 git checkout production
 cd ../../
-rm Vagrantfile
-vagrant init wembli http://www01.wembli.com/files/wembli.box
+vagrant init wembli 
 vagrant up
